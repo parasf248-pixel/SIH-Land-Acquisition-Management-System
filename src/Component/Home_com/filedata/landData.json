@@ -1,0 +1,218 @@
+[
+  {
+    "state": "Andhra Pradesh",
+    "projects": 82,
+    "land": 5240,
+    "status": "On Track"
+  },
+  {
+    "state": "Arunachal Pradesh",
+    "projects": 24,
+    "land": 1860,
+    "status": "Moderate"
+  },
+  {
+    "state": "Assam",
+    "projects": 61,
+    "land": 3980,
+    "status": "On Track"
+  },
+  {
+    "state": "Bihar",
+    "projects": 74,
+    "land": 4620,
+    "status": "Delayed"
+  },
+  {
+    "state": "Chhattisgarh",
+    "projects": 58,
+    "land": 4870,
+    "status": "Moderate"
+  },
+  {
+    "state": "Goa",
+    "projects": 18,
+    "land": 620,
+    "status": "On Track"
+  },
+  {
+    "state": "Gujarat",
+    "projects": 136,
+    "land": 9840,
+    "status": "On Track"
+  },
+  {
+    "state": "Haryana",
+    "projects": 94,
+    "land": 5120,
+    "status": "Moderate"
+  },
+  {
+    "state": "Himachal Pradesh",
+    "projects": 42,
+    "land": 2680,
+    "status": "On Track"
+  },
+  {
+    "state": "Jharkhand",
+    "projects": 53,
+    "land": 4210,
+    "status": "Delayed"
+  },
+  {
+    "state": "Karnataka",
+    "projects": 128,
+    "land": 8750,
+    "status": "On Track"
+  },
+  {
+    "state": "Kerala",
+    "projects": 67,
+    "land": 2890,
+    "status": "Moderate"
+  },
+  {
+    "state": "Madhya Pradesh",
+    "projects": 119,
+    "land": 9230,
+    "status": "On Track"
+  },
+  {
+    "state": "Maharashtra",
+    "projects": 184,
+    "land": 12650,
+    "status": "Delayed"
+  },
+  {
+    "state": "Manipur",
+    "projects": 21,
+    "land": 1240,
+    "status": "Moderate"
+  },
+  {
+    "state": "Meghalaya",
+    "projects": 19,
+    "land": 1380,
+    "status": "On Track"
+  },
+  {
+    "state": "Mizoram",
+    "projects": 15,
+    "land": 970,
+    "status": "On Track"
+  },
+  {
+    "state": "Nagaland",
+    "projects": 17,
+    "land": 1120,
+    "status": "Moderate"
+  },
+  {
+    "state": "Odisha",
+    "projects": 91,
+    "land": 7340,
+    "status": "On Track"
+  },
+  {
+    "state": "Punjab",
+    "projects": 73,
+    "land": 3860,
+    "status": "Moderate"
+  },
+  {
+    "state": "Rajasthan",
+    "projects": 97,
+    "land": 6230,
+    "status": "Moderate"
+  },
+  {
+    "state": "Sikkim",
+    "projects": 12,
+    "land": 740,
+    "status": "On Track"
+  },
+  {
+    "state": "Tamil Nadu",
+    "projects": 142,
+    "land": 8160,
+    "status": "On Track"
+  },
+  {
+    "state": "Telangana",
+    "projects": 86,
+    "land": 5740,
+    "status": "On Track"
+  },
+  {
+    "state": "Tripura",
+    "projects": 26,
+    "land": 1540,
+    "status": "Moderate"
+  },
+  {
+    "state": "Uttar Pradesh",
+    "projects": 125,
+    "land": 8420,
+    "status": "On Track"
+  },
+  {
+    "state": "Uttarakhand",
+    "projects": 39,
+    "land": 2310,
+    "status": "Delayed"
+  },
+  {
+    "state": "West Bengal",
+    "projects": 88,
+    "land": 4980,
+    "status": "Delayed"
+  },
+  {
+    "state": "Andaman and Nicobar Islands",
+    "projects": 8,
+    "land": 430,
+    "status": "On Track"
+  },
+  {
+    "state": "Chandigarh",
+    "projects": 5,
+    "land": 120,
+    "status": "No Projects"
+  },
+  {
+    "state": "Dadra and Nagar Haveli and Daman and Diu",
+    "projects": 9,
+    "land": 380,
+    "status": "On Track"
+  },
+  {
+    "state": "Delhi",
+    "projects": 31,
+    "land": 640,
+    "status": "Delayed"
+  },
+  {
+    "state": "Jammu and Kashmir",
+    "projects": 47,
+    "land": 3150,
+    "status": "Moderate"
+  },
+  {
+    "state": "Ladakh",
+    "projects": 14,
+    "land": 920,
+    "status": "On Track"
+  },
+  {
+    "state": "Lakshadweep",
+    "projects": 3,
+    "land": 80,
+    "status": "No Projects"
+  },
+  {
+    "state": "Puducherry",
+    "projects": 11,
+    "land": 290,
+    "status": "On Track"
+  }
+]
