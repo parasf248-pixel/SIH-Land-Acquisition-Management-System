@@ -17,6 +17,8 @@ import Dask1 from "./DaskBoard/Dask1";
 import Dask3 from "./DaskBoard/Dask3";
 import Dask4 from "./DaskBoard/Dask4";
 import Dask5 from "./DaskBoard/Dask5";
+import PlotMap from "./Component/PlotMap";
+import Dask6 from "./DaskBoard/Dask6";
 
 const App = () => {
 
@@ -89,7 +91,26 @@ const App = () => {
               <Dask5/>
             }
           />
-
+          
+          <Route
+            path="/Dask5"
+            element={
+              <Dask5/>
+            }
+          />
+          <Route
+            path="/Dask6"
+            element={
+              <Dask6/>
+            }
+          />
+          {/* Map */}
+            <Route
+            path="/PlotMap"
+            element={
+              <PlotMap />
+            }
+          />
           {/* LAND FORM */}
           <Route
             path="/land-information"

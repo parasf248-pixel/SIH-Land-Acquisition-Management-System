@@ -10,6 +10,7 @@ import {
   CircleHelp,
   User,
   LogOut,
+  Locate ,
 } from "lucide-react";
 
 import { Link } from "react-router-dom";
@@ -89,6 +90,11 @@ const DaskNav = (props) => {
             text="Rehabilitation & R&R"
           />
 
+          <NavItem
+            to="/PlotMap"
+            icon={<Locate  size={20} />}
+            text="MapLand"
+          />
 
           {/* DOCUMENTS */}
 
@@ -111,7 +117,7 @@ const DaskNav = (props) => {
           {/* GRIEVANCES */}
 
           <NavItem
-            to="/grievances"
+            to="/Dask6"
             icon={<MessageCircle size={20} />}
             text="Grievances"
           />

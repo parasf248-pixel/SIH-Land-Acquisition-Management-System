@@ -42,6 +42,7 @@ const DaskBoard = ({ login, useda }) => {
 
             <main className="w-full px-5 py-3">
             <Dask1 userData={userData} />
+            <Dask2 userData={userData} />
               {/* TOP DASHBOARD */}
               
             </main>
