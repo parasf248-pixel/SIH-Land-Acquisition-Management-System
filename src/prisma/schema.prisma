@@ -1,0 +1,270 @@
+// =============================================================================
+// S.I.H. 2026 — Database Layer
+// PostgreSQL + Prisma ORM
+//
+// Scope: database layer ONLY. No API/business logic lives here.
+// See database/docs/architecture.md for design rationale.
+// =============================================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// -----------------------------------------------------------------------------
+// ENUMS
+// -----------------------------------------------------------------------------
+
+/// Application-level role. Kept minimal on purpose — USER / ADMIN is enough
+/// for the hackathon scope; do not add more roles unless a real requirement
+/// appears (this table is not the same as the project's RBAC role set).
+enum UserRole {
+  USER
+  ADMIN
+}
+
+/// Account status. Separate from role so an account can be disabled without
+/// losing its role assignment.
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+}
+
+/// Lifecycle of a single assessment submission. Assessments are never
+/// deleted or overwritten — a new submission is always a new row.
+enum AssessmentStatus {
+  DRAFT
+  SUBMITTED
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+/// Shared risk vocabulary used by both Prediction and Alert so the two
+/// stay comparable without needing a join or a lookup table.
+enum RiskLevel {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum AlertSeverity {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+/// Delivery channel for a notification. Only IN_APP is implemented today;
+/// the enum exists so EMAIL / SMS can be added later without a schema
+/// rewrite — just extend the enum and add a migration.
+enum NotificationChannel {
+  IN_APP
+}
+
+enum NotificationStatus {
+  PENDING
+  SENT
+  FAILED
+}
+
+enum ReportStatus {
+  PENDING
+  GENERATING
+  COMPLETED
+  FAILED
+}
+
+// -----------------------------------------------------------------------------
+// MODELS
+// -----------------------------------------------------------------------------
+
+/// Application users and admins. This table only stores what the database
+/// needs to safely persist auth-related data — it does not implement
+/// authentication itself (that is a backend concern).
+model User {
+  id           String     @id @default(uuid()) @db.Uuid
+  name         String
+  email        String     @unique
+  /// Bcrypt/Argon2 hash produced by the backend. Never a plaintext password.
+  passwordHash String     @map("password_hash")
+  role         UserRole   @default(USER)
+  status       UserStatus @default(ACTIVE)
+  createdAt    DateTime   @default(now()) @map("created_at")
+  updatedAt    DateTime   @updatedAt @map("updated_at")
+  lastLoginAt  DateTime?  @map("last_login_at")
+
+  assessments   Assessment[]
+  reports       Report[]
+  alerts        Alert[]
+  notifications Notification[]
+  auditLogs     AuditLog[]     @relation("AuditLogActor")
+
+  @@map("users")
+  @@index([email])
+  @@index([role])
+}
+
+/// A single user submission destined for ML prediction. Historical by
+/// design: a user can have many assessments over time, and none of them
+/// are ever overwritten.
+model Assessment {
+  id        String           @id @default(uuid()) @db.Uuid
+  userId    String           @map("user_id") @db.Uuid
+  /// Flexible ML input payload. Kept in JSONB deliberately — the shape of
+  /// "input data" is expected to evolve with the model and should not
+  /// require a migration every time a field is added or removed.
+  inputData Json             @map("input_data")
+  status    AssessmentStatus @default(DRAFT)
+  createdAt DateTime         @default(now()) @map("created_at")
+  updatedAt DateTime         @updatedAt @map("updated_at")
+
+  user        User         @relation(fields: [userId], references: [id], onDelete: Restrict)
+  predictions Prediction[]
+
+  @@map("assessments")
+  @@index([userId])
+  @@index([createdAt])
+  @@index([status])
+}
+
+/// One ML prediction result for one assessment. Predictions are append-only:
+/// re-running a model produces a new row, never an update, so trends and
+/// model-version comparisons stay possible.
+model Prediction {
+  id           String     @id @default(uuid()) @db.Uuid
+  assessmentId String     @map("assessment_id") @db.Uuid
+  /// The prediction outcome itself (e.g. a label or short result string).
+  /// Kept as text rather than an enum because the set of possible outcomes
+  /// is model-defined, not database-defined.
+  prediction   String
+  /// Confidence/probability in [0, 1]. Enforced with a CHECK constraint —
+  /// see migration.sql.
+  probability  Decimal?   @db.Decimal(5, 4)
+  riskLevel    RiskLevel? @map("risk_level")
+  modelName    String     @map("model_name")
+  modelVersion String     @map("model_version")
+  /// Anything else the model wants to attach (feature importances, raw
+  /// scores, explanation payloads). Not queried directly, so JSONB is the
+  /// right fit.
+  metadata     Json?
+  createdAt    DateTime   @default(now()) @map("created_at")
+
+  assessment Assessment @relation(fields: [assessmentId], references: [id], onDelete: Restrict)
+  reports    Report[]
+  alerts     Alert[]
+
+  @@map("predictions")
+  @@index([assessmentId])
+  @@index([createdAt])
+  @@index([riskLevel])
+  @@index([modelName, modelVersion])
+}
+
+/// Metadata for a generated report. The report's actual content either
+/// lives in report_data (small, structured) or points out to object
+/// storage via file_reference (large files) — never both, and never a
+/// large binary blob inline in Postgres.
+model Report {
+  id            String       @id @default(uuid()) @db.Uuid
+  userId        String       @map("user_id") @db.Uuid
+  predictionId  String       @map("prediction_id") @db.Uuid
+  status        ReportStatus @default(PENDING)
+  /// Structured report content, when small enough to store inline.
+  reportData    Json?        @map("report_data")
+  /// Pointer to an external object-storage location (S3 key, URL, etc.)
+  /// for larger report artifacts (PDFs, exports).
+  fileReference String?      @map("file_reference")
+  createdAt     DateTime     @default(now()) @map("created_at")
+  updatedAt     DateTime     @updatedAt @map("updated_at")
+
+  user       User       @relation(fields: [userId], references: [id], onDelete: Restrict)
+  prediction Prediction @relation(fields: [predictionId], references: [id], onDelete: Restrict)
+
+  @@map("reports")
+  @@index([userId])
+  @@index([predictionId])
+  @@index([status])
+}
+
+/// A notable condition surfaced from a prediction or a system rule.
+/// predictionId is optional because not every alert originates from a
+/// model output (e.g. a system/operational alert).
+model Alert {
+  id           String        @id @default(uuid()) @db.Uuid
+  userId       String        @map("user_id") @db.Uuid
+  predictionId String?       @map("prediction_id") @db.Uuid
+  type         String
+  severity     AlertSeverity
+  title        String
+  message      String
+  isRead       Boolean       @default(false) @map("is_read")
+  createdAt    DateTime      @default(now()) @map("created_at")
+  resolvedAt   DateTime?     @map("resolved_at")
+
+  user          User           @relation(fields: [userId], references: [id], onDelete: Restrict)
+  /// SetNull (not Restrict): predictionId is optional, and an alert should
+  /// be able to outlive the prediction that triggered it rather than
+  /// blocking cleanup of old predictions.
+  prediction    Prediction?    @relation(fields: [predictionId], references: [id], onDelete: SetNull)
+  notifications Notification[]
+
+  @@map("alerts")
+  @@index([userId])
+  @@index([predictionId])
+  @@index([isRead])
+  @@index([createdAt])
+  @@index([severity])
+}
+
+/// Delivery tracking for a single alert on a single channel. This table
+/// tracks *delivery*, not the alert content itself — that stays on Alert.
+model Notification {
+  id            String              @id @default(uuid()) @db.Uuid
+  userId        String              @map("user_id") @db.Uuid
+  alertId       String              @map("alert_id") @db.Uuid
+  channel       NotificationChannel @default(IN_APP)
+  status        NotificationStatus  @default(PENDING)
+  createdAt     DateTime            @default(now()) @map("created_at")
+  sentAt        DateTime?           @map("sent_at")
+  failureReason String?             @map("failure_reason")
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Restrict)
+  /// Cascade here (unlike everywhere else): a notification record only
+  /// exists to track delivery of its parent alert, so it has no meaning
+  /// once that alert is gone.
+  alert Alert @relation(fields: [alertId], references: [id], onDelete: Cascade)
+
+  @@map("notifications")
+  @@index([userId])
+  @@index([alertId])
+  @@index([status])
+}
+
+/// Append-only record of administrative/system actions. Never stores
+/// secrets, tokens, or credentials — only what happened, to what, and by
+/// whom (when known).
+model AuditLog {
+  id          String   @id @default(uuid()) @db.Uuid
+  /// Nullable + SetNull on delete: an audit entry must survive the
+  /// deletion of the user who caused it (the log is the point).
+  actorUserId String?  @map("actor_user_id") @db.Uuid
+  action      String
+  entityType  String   @map("entity_type")
+  entityId    String?  @map("entity_id") @db.Uuid
+  metadata    Json?
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  actor User? @relation("AuditLogActor", fields: [actorUserId], references: [id], onDelete: SetNull)
+
+  @@map("audit_logs")
+  @@index([actorUserId])
+  @@index([createdAt])
+  @@index([entityType, entityId])
+}

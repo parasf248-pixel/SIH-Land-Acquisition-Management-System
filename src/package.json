@@ -1,0 +1,26 @@
+{
+  "name": "sih-database",
+  "version": "1.0.0",
+  "description": "Database layer (PostgreSQL + Prisma) for the S.I.H. 2026 project",
+  "private": true,
+  "scripts": {
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:deploy": "prisma migrate deploy",
+    "prisma:studio": "prisma studio",
+    "seed": "ts-node prisma/seed.ts",
+    "verify": "ts-node tests/verify-db.ts"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.20.0"
+  },
+  "devDependencies": {
+    "prisma": "^5.20.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2",
+    "@types/node": "^20.14.0"
+  }
+}
