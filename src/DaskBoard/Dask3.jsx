@@ -34,7 +34,7 @@ const Dask3 = (props) => {
 
 
   return (
-    <div className="min-h-screen text-black bg-[#f5f6f8]">
+    <div className="scroll-right min-h-screen text-black bg-[#f5f6f8]">
 
       {/* ==================================================
           MAIN DASHBOARD
@@ -71,7 +71,7 @@ const Dask3 = (props) => {
 
             {/* ================= PAGE HEADER ================= */}
 
-            <div className="mb-2">
+            <div className="scroll-zoom mb-2">
 
               <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 leading-tight">
                 My Land Case
@@ -86,7 +86,7 @@ const Dask3 = (props) => {
 
             {/* ================= CASE HEADER ================= */}
 
-            <div className="bg-white border border-gray-200 rounded-lg shadow-sm px-3 py-2 mb-3">
+            <div className="scroll-left bg-white border border-gray-200 rounded-lg shadow-sm px-3 py-2 mb-3">
 
               <div className="flex items-center justify-between gap-3">
 
@@ -134,7 +134,7 @@ const Dask3 = (props) => {
 
                 {/* SECURITY */}
 
-                <div className="hidden md:flex items-center gap-2 bg-green-50 border border-green-200 rounded-lg px-3 py-1.5">
+                <div className="scroll-up hidden md:flex items-center gap-2 bg-green-50 border border-green-200 rounded-lg px-3 py-1.5">
 
                   <ShieldCheck
                     size={18}
@@ -165,14 +165,14 @@ const Dask3 = (props) => {
                 TWO COLUMN CONTENT
             ================================================== */}
 
-            <div className="grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-3">
+            <div className=" grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-3">
 
 
               {/* ==================================================
                   CASE STATUS
               ================================================== */}
 
-              <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-3">
+              <div className="scroll-left bg-white rounded-lg border border-gray-200 shadow-sm p-3">
 
                 <div className="flex items-center justify-between mb-3">
 
@@ -249,7 +249,7 @@ const Dask3 = (props) => {
                   LAND LOCATION / DETAILS
               ================================================== */}
 
-              <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-3">
+              <div className="scroll-right bg-white rounded-lg border border-gray-200 shadow-sm p-3">
 
                 <div className="flex items-center justify-between mb-3">
 
@@ -280,7 +280,7 @@ const Dask3 = (props) => {
 
                 {/* LOCATION */}
 
-                <div className="border border-gray-200 rounded-lg p-3 bg-gray-50">
+                <div className=" border border-gray-200 rounded-lg p-3 bg-gray-50">
 
                   <div className="flex items-center gap-3">
 
@@ -317,7 +317,7 @@ const Dask3 = (props) => {
 
                 {/* PROPERTY DETAILS */}
 
-                <div className="grid grid-cols-2 gap-2 mt-2">
+                <div className=" grid grid-cols-2 gap-2 mt-2">
 
                   <PropertyItem
                     icon={<Home size={13} />}
@@ -387,7 +387,7 @@ const Dask3 = (props) => {
                 DOCUMENTS
             ================================================== */}
 
-            <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-3 mt-3">
+            <div className="scroll-zoom bg-white border border-gray-200 rounded-lg shadow-sm p-3 mt-3">
 
               <div className="flex items-center justify-between mb-2">
 

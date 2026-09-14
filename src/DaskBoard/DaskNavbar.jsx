@@ -25,7 +25,7 @@ const DaskNav = (props) => {
 
 
   return (
-    <div className="h-full bg-gradient-to-b from-blue-600 via-blue-900 to-black text-white flex flex-col px-3 py-5">
+    <div className="scroll-left h-full bg-gradient-to-b from-blue-600 via-blue-900 to-black text-white flex flex-col px-3 py-5">
 
       {/* ================= LOGO ================= */}
 
@@ -99,7 +99,7 @@ const DaskNav = (props) => {
           {/* DOCUMENTS */}
 
           <NavItem
-            to="/documents"
+            to="/"
             icon={<FolderOpen size={20} />}
             text="Documents"
           />
@@ -108,7 +108,7 @@ const DaskNav = (props) => {
           {/* NOTICES */}
 
           <NavItem
-            to="/notices"
+            to="/"
             icon={<Bell size={20} />}
             text="Notices & Updates"
           />
@@ -135,7 +135,7 @@ const DaskNav = (props) => {
           {/* PROFILE */}
 
           <NavItem
-            to="/profile"
+            to="/Profile"
             icon={<User size={20} />}
             text="Profile"
           />
@@ -173,7 +173,8 @@ const DaskNav = (props) => {
 
       {/* ================= HELP CARD ================= */}
 
-      <div
+      <Link
+      to='/Contact'
         className="
           bg-white/10
           backdrop-blur-sm
@@ -206,7 +207,7 @@ const DaskNav = (props) => {
 
         </div>
 
-      </div>
+      </Link>
 
     </div>
   );

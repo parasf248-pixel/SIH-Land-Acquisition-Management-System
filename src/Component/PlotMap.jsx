@@ -15,7 +15,7 @@ import plotData from "../data/plotData";
 
 const PlotMap = () => {
   return (
-    <div className="flex min-h-screen bg-[#f5f6f8] text-gray-900">
+    <div className="scroll-zoom flex min-h-screen bg-[#f5f6f8] text-gray-900">
 
       {/* SIDEBAR */}
       <aside className="w-[230px] shrink-0 min-h-screen">

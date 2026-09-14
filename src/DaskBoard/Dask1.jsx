@@ -40,7 +40,7 @@ const Dask1 = (props) => {
   return (
     <div
       ref={profileRef}
-      className="fixed  top-5 right-6 z-50"
+      className="fixed scroll-auto top-3 right-6 z-10"
     >
       {/* ================= PROFILE BUTTON ================= */}
       <button

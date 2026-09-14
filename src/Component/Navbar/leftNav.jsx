@@ -46,7 +46,7 @@ const LeftNav = (props) => {
         <span className={`text-base font-semibold hover:text-cyan-400`}>FAQ</span>
       </Link>
 
-      <Link to="/Contact" className={`${condition === true ? 'block' : 'hidden'} flex items-center justify-center gap-2 px-4 py-2 rounded-2xl outline-none hover:bg-blue-700 hover:text-cyan-400 transition-all duration-300 ease-in-out whitespace-nowrap`}>
+      <Link to="/Contact" className={`flex items-center justify-center gap-2 px-4 py-2 rounded-2xl outline-none hover:bg-blue-700 hover:text-cyan-400 transition-all duration-300 ease-in-out whitespace-nowrap`}>
         <Headset size={20} />
         <span className={`text-base font-semibold hover:text-cyan-400`}>Contact Us</span>
       </Link>

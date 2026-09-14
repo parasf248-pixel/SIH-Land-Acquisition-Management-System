@@ -23,7 +23,7 @@ const Dask4 = ({ userData }) => {
     user.amountPending || "6,25,000";
 
   return (
-    <div className="flex min-h-screen bg-[#f5f6f8]">
+    <div className="scroll-zoom flex min-h-screen bg-[#f5f6f8]">
 
       {/* ================= LEFT NAVBAR ================= */}
 
@@ -51,7 +51,7 @@ const Dask4 = ({ userData }) => {
 
 
           {/* SUMMARY */}
-          <section className="bg-white border border-gray-200 rounded-lg shadow-sm p-4">
+          <section className="scroll-left bg-white border border-gray-200 rounded-lg shadow-sm p-4">
 
             <h2 className="text-sm font-semibold mb-3">
               Compensation Summary
@@ -89,7 +89,7 @@ const Dask4 = ({ userData }) => {
 
 
           {/* PAYMENT + HISTORY */}
-          <div className="grid grid-cols-1 lg:grid-cols-[1.7fr_0.7fr] gap-4 mt-4">
+          <div className="grid scroll-right grid-cols-1 lg:grid-cols-[1.7fr_0.7fr] gap-4 mt-4">
 
             {/* PAYMENT STATUS */}
             <section className="bg-white border border-gray-200 rounded-lg shadow-sm p-4">
@@ -135,7 +135,7 @@ const Dask4 = ({ userData }) => {
 
 
                 {/* PROGRESS */}
-                <div className="border-l border-gray-200 pl-5">
+                <div className="  border-l border-gray-200 pl-5">
 
                   <h2 className="text-sm font-bold">
                     Payment Progress
@@ -175,7 +175,7 @@ const Dask4 = ({ userData }) => {
 
 
             {/* PAYMENT HISTORY */}
-            <section className="bg-white border border-gray-200 rounded-lg shadow-sm p-4">
+            <section className= "scroll-zoom bg-white border border-gray-200 rounded-lg shadow-sm p-4">
 
               <div className="flex items-center justify-between mb-3">
 
@@ -261,7 +261,7 @@ const Dask4 = ({ userData }) => {
 
 
             {/* DOCUMENTS */}
-            <section className="bg-white border border-gray-200 rounded-lg shadow-sm p-4">
+            <section className="scroll-right bg-white border border-gray-200 rounded-lg shadow-sm p-4">
 
               <h2 className="text-sm font-bold mb-2">
                 Compensation Documents
@@ -287,7 +287,7 @@ const Dask4 = ({ userData }) => {
 
 
           {/* HELP BUTTON */}
-          <div className="fixed bottom-4 right-4">
+          <div className="scroll-zoom fixed bottom-4 right-4">
 
             <button className="bg-[#281477] hover:bg-[#351c92] text-white rounded-lg shadow-lg px-4 py-3 flex items-center gap-2">
 

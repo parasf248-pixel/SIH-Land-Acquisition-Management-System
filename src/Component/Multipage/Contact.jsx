@@ -47,7 +47,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 text-gray-800">
+    <div className=" scroll-right min-h-screen bg-gray-100 text-gray-800">
 
       {/* =====================================================
           HERO
@@ -85,7 +85,7 @@ const Contact = () => {
           CONTACT INFORMATION
       ===================================================== */}
 
-      <section className="max-w-7xl mx-auto px-6 md:px-10 -mt-10 relative z-10">
+      <section className="scroll-up max-w-7xl mx-auto px-6 md:px-10 -mt-10 relative z-10">
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
 
@@ -124,7 +124,7 @@ const Contact = () => {
           MAIN CONTACT SECTION
       ===================================================== */}
 
-      <section className="max-w-7xl mx-auto px-6 md:px-10 py-14">
+      <section className=" max-w-7xl mx-auto px-6 md:px-10 py-14">
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
@@ -132,7 +132,7 @@ const Contact = () => {
               LEFT INFORMATION
           ================================================= */}
 
-          <div>
+          <div className="scroll-left">
 
             <p className="text-sm font-semibold text-blue-600">
               GET IN TOUCH
@@ -215,7 +215,7 @@ const Contact = () => {
               CONTACT FORM
           ================================================= */}
 
-          <div className="bg-white rounded-3xl shadow-lg border border-gray-200 p-6 md:p-8">
+          <div className="scroll-right bg-white rounded-3xl shadow-lg border border-gray-200 p-6 md:p-8">
 
             <h2 className="text-2xl font-bold text-gray-900">
               Send us a message

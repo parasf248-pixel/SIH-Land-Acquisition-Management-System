@@ -132,10 +132,10 @@ const Dask6 = () => {
       </aside>
 
       {/* ================= MAIN ================= */}
-      <main className="flex-1 min-w-0 p-6">
+      <main className=" scroll-zoom flex-1 min-w-0 p-6">
 
         {/* HEADER */}
-        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-6">
+        <div className="scroll-left flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-6">
 
           <div>
             <h1 className="text-3xl font-bold text-gray-900">
@@ -156,7 +156,7 @@ const Dask6 = () => {
 
 
         {/* ================= STATISTICS ================= */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-6">
+        <div className="scroll-right grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-6">
 
           {/* Total */}
           <div className="rounded-2xl bg-white p-5 shadow-sm border border-gray-100">
@@ -205,7 +205,7 @@ const Dask6 = () => {
 
 
           {/* Under Review */}
-          <div className="rounded-2xl bg-white p-5 shadow-sm border border-gray-100">
+          <div className="scroll-up rounded-2xl bg-white p-5 shadow-sm border border-gray-100">
             <div className="flex items-center justify-between">
 
               <div>
@@ -307,7 +307,7 @@ const Dask6 = () => {
 
 
         {/* ================= GRIEVANCE TABLE ================= */}
-        <div className="overflow-hidden rounded-2xl bg-white shadow-sm border border-gray-100">
+        <div className="scroll-zoom overflow-hidden rounded-2xl bg-white shadow-sm border border-gray-100">
 
           <div className="border-b border-gray-100 px-6 py-5">
 

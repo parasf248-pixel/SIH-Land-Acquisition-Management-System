@@ -28,7 +28,7 @@ const Dask5 = () => {
 
       {/* ================= MAIN CONTENT ================= */}
 
-      <main className="flex-1 min-w-0 px-6 py-4">
+      <main className=" scroll-zoom flex-1 min-w-0 px-6 py-4">
 
         {/* Back */}
 

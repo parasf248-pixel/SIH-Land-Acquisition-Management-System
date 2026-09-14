@@ -16,7 +16,8 @@ import {
   Download,
   HelpCircle,
 } from "lucide-react";
-import {Link} from 'react-router-dom'
+import Dask1 from "./Dask1";
+import {Link, Links} from 'react-router-dom'
 
 const Dask2 = (props) => {
     const [user, setUser] = useState([])
@@ -62,28 +63,38 @@ const Dask2 = (props) => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#f5f7f8] text-gray-800">
+    <div className="scroll-right min-h-screen bg-[#f5f7f8] text-gray-800">
 
       {/* ================= HEADER ================= */}
       <header className="bg-white border-b border-gray-200 px-4 sm:px-6 lg:px-8 py-4">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
+        <div className="flex flex-wrap items-center justify-between ">
+          <div className="flex flex-wrap items-center justify-center">
 
-          <div>
-            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
-              Hi! ,{user.oname} 
-            </h1>
+            <div>
+              <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
+                Hi! ,{user.oname} 
+              </h1>
 
-            <p className="text-xs sm:text-sm text-gray-500 mt-1">
-              Track the status of your land acquisition case on BhoomiSetu
-            </p>
+              <p className="text-xs sm:text-sm text-gray-500 mt-1">
+                Track the status of your land acquisition case on BhoomiSetu
+              </p>
+            </div>
+
+            
           </div>
-
-          
+          <Link to='/sell' className="cursor-pointer rounded-2xl bg-linear-to-tr from-blue-800 via-blue-900 to-black px-5 py-3 active:scale-95 hover:bg-blue-950">
+            <div className="text-white font-semibold ">
+              <span>For Sale</span>
+              </div>
+          </Link>
+          <div className="">
+            <Dask1 userData={user} />
+          </div>
         </div>
       </header>
 
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+      <main className="scroll-left max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
 
         {/* ================= TOP CARDS ================= */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">

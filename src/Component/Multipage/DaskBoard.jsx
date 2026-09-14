@@ -4,7 +4,7 @@ import Dask1 from "../../DaskBoard/Dask1";
 import Dask2 from "../../DaskBoard/Dask2";
 import DaskNav from "../../DaskBoard/DaskNavbar";
 import Dask3 from "../../DaskBoard/Dask3";
-
+import { Link } from "react-router-dom";
 const DaskBoard = ({ login, useda }) => {
 
   const [condition, setCondition] = useState(false);
@@ -21,7 +21,7 @@ const DaskBoard = ({ login, useda }) => {
   };
 
   return (
-    <div className="min-h-screen bg-[#f4f5f7]">
+    <div className="min-h-screen scroll-zoom bg-[#f4f5f7]">
 
       {!condition ? (
 
@@ -38,10 +38,9 @@ const DaskBoard = ({ login, useda }) => {
           </div>
 
           {/* ================= RIGHT DASHBOARD ================= */}
-          <div className="flex-1 min-w-0">
+          <div className=" min-w-0">
 
             <main className="w-full px-5 py-3">
-            <Dask1 userData={userData} />
             <Dask2 userData={userData} />
               {/* TOP DASHBOARD */}
               

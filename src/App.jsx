@@ -19,6 +19,8 @@ import Dask4 from "./DaskBoard/Dask4";
 import Dask5 from "./DaskBoard/Dask5";
 import PlotMap from "./Component/PlotMap";
 import Dask6 from "./DaskBoard/Dask6";
+import Profile from "./DaskBoard/profile";
+import SellProperty from "./DaskBoard/SellProperty";
 
 const App = () => {
 
@@ -96,6 +98,18 @@ const App = () => {
             path="/Dask5"
             element={
               <Dask5/>
+            }
+          />
+          <Route
+            path="/Profile"
+            element={
+              <Profile/>
+            }
+          />
+          <Route
+            path="/sell"
+            element={
+              <SellProperty />
             }
           />
           <Route
